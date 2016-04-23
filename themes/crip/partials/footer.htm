@@ -1,3 +1,4 @@
+[cripSubscribe]
 ==
 <footer class="col-md-12">
     <section class="container">
@@ -11,19 +12,10 @@
         </article>
         <div class="devider"></div>
         <article class="col-xs-12 col-md-6 col-md-pull-6">
-            <form data-request="onSubscribe"
-                  data-request-update="subscriberesult: '#result'">
-                <h3 class="footer-heading">SUBSCRIBE FOR LATEST NEWS</h3>
-                <input type="text" name="email" placeholder="ENTER AN E-MAIL ADDRESS">
-                <span>
-                    <input type="submit" class="btn btn-primary btn-lg" value="SUBSCRIBE">
-                </span>
-            </form>
+
+            {% component 'cripSubscribe' %}
+
         </article>
 
     </section>
 </footer>
-
-<div id="result">
-    {% partial "subscriberesult" %}
-</div>

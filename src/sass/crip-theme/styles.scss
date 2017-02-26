@@ -1,0 +1,12 @@
+@import "navbar";
+@import "footer";
+
+.crip-section {
+  margin: 20px 0;
+}
+
+@media (min-width: $screen-sm-min) {
+  .crip-section {
+    margin: 60px 0;
+  }
+}

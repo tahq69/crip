@@ -1,41 +1,30 @@
 ﻿#particles-js {
+  z-index: -2;
   position: relative;
   height: 626px;
-  background-color: $second-color;
-  background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 50%;
-  margin-bottom: 150px;
+  background-color: $second-color;
+  margin-bottom: 200px;
 
-  h1 {
-    position: absolute;
-    font-size: 60px;
-    color: #fff;
-    font-weight: 700;
-    display: inline-block;
-    right: 50%;
-    margin-right: -65px;
-    top: 314px;
+  h1, h2, h3 {
+    color: $body-bg;
   }
 
   h2 {
-    position: absolute;
-    display: inline-block;
     font-size: 32px;
-    color: #fff;
-    top: 136px;
-    text-align: center;
+    margin-top: 136px;
+  }
+
+  h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-top: 55px;
   }
 
   h3 {
-    position: absolute;
-    display: inline-block;
     font-size: 27px;
     font-weight: 300;
-    right: 50%;
-    margin-right: -144px;
-    color: #fff;
-    top: 417px;
+    margin-top: 50px;
   }
 
   .center-logo {
@@ -45,5 +34,17 @@
     height: 375px;
     left: 50%;
     margin-left: -168px;
+    z-index: 100;
+  }
+
+  .particles-js-canvas-el {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+
+  .z-100 {
+    z-index: 100;
+    position: relative;
   }
 }

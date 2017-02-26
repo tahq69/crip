@@ -1,5 +1,4 @@
 ﻿#particles-js {
-  z-index: -2;
   position: relative;
   height: 626px;
   background-size: cover;
@@ -38,9 +37,8 @@
   }
 
   .particles-js-canvas-el {
-    position: fixed;
+    position: absolute;
     top: 0;
-    z-index: -1;
   }
 
   .z-100 {

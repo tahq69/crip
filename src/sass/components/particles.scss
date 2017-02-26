@@ -1,0 +1,49 @@
+﻿#particles-js {
+  position: relative;
+  height: 626px;
+  background-color: $second-color;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-bottom: 150px;
+
+  h1 {
+    position: absolute;
+    font-size: 60px;
+    color: #fff;
+    font-weight: 700;
+    display: inline-block;
+    right: 50%;
+    margin-right: -65px;
+    top: 314px;
+  }
+
+  h2 {
+    position: absolute;
+    display: inline-block;
+    font-size: 32px;
+    color: #fff;
+    top: 136px;
+    text-align: center;
+  }
+
+  h3 {
+    position: absolute;
+    display: inline-block;
+    font-size: 27px;
+    font-weight: 300;
+    right: 50%;
+    margin-right: -144px;
+    color: #fff;
+    top: 417px;
+  }
+
+  .center-logo {
+    position: absolute;
+    top: 450px;
+    width: 336px;
+    height: 375px;
+    left: 50%;
+    margin-left: -168px;
+  }
+}

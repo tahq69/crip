@@ -24,19 +24,14 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    preLoaders: [
-      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/}
-    ],
     loaders: [
+      {enforce: 'pre', test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/},
       {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-      {test: /\.css$/, loader: 'style!css!autoprefixer', exclude: /node_modules/},
-      {test: /\.scss$/, loader: 'style!css!sass', exclude: /node_modules/},
+      {test: /\.css$/, loader: 'style-loader!css-loader!autoprefixer-loader', exclude: /node_modules/},
+      {test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader', exclude: /node_modules/},
       {test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, loader: 'url-loader'},
       {test: /\.jpe?g$|\.gif$|\.png$/i, loader: 'file-loader?name=./../img/[name].[ext]'}
     ]
   },
-  plugins: plugins,
-  eslint: {
-    fix: true
-  }
+  plugins: plugins
 }

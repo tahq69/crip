@@ -16,9 +16,8 @@ $font-size-base: 18px;
 @import "components/particles";
 
 body {
-  background-image: url(../img/bg.png);
-  background-repeat: repeat-x;
-  background-position: 0 600px;
+  background: url(../img/bg.png) repeat-x 0 700px;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+  background-color: transparent;
 }

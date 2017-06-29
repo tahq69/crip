@@ -1,5 +1,5 @@
 import 'particles.js'
-import '../sass/app.scss'
+import './sass/app.scss'
 
 particlesJS('particles-js', {
   'particles': {

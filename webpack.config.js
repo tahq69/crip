@@ -1,37 +1,61 @@
-const webpack = require('webpack')
-const path = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-let plugins = [
-  new CopyWebpackPlugin([
-    {from: './src/img', to: './../img'},
-    {from: './src/index.html', to: './../index.html'}
-  ])
-]
-
-if (process.argv.indexOf('--minimize') !== -1) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}))
-}
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
-  devtool: '#source-map',
-  context: __dirname,
-  entry: {
-    app: ['babel-polyfill', path.join(__dirname, 'src/js/app.js')]
-  },
+  entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'dist/js'),
-    filename: '[name].js'
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
   },
   module: {
-    loaders: [
-      {enforce: 'pre', test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/},
+    rules: [
       {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-      {test: /\.css$/, loader: 'style-loader!css-loader!autoprefixer-loader', exclude: /node_modules/},
-      {test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader', exclude: /node_modules/},
+      {
+        test: /\.scss$|\.css$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'sass-loader']})
+      },
       {test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, loader: 'url-loader'},
-      {test: /\.jpe?g$|\.gif$|\.png$/i, loader: 'file-loader?name=./../img/[name].[ext]'}
+      {test: /\.(png|jpe?g|gif|svg)$/, loader: 'file-loader', options: {name: '[name].[ext]?[hash]'}}
     ]
   },
-  plugins: plugins
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  performance: {
+    hints: false
+  },
+  devtool: '#eval-source-map',
+  plugins: [
+    new ExtractTextPlugin('styles.css'),
+    new CopyWebpackPlugin([
+      {from: './src/img', to: './img'},
+      {from: './index.html', to: './index.html'}
+    ])
+  ]
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
+  ])
 }
